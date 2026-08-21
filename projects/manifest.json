@@ -1,0 +1,80 @@
+[
+  {
+    "slug": "li-ion-bms",
+    "title": "Li-Ion BMS with an AFE-BMS",
+    "summary": "A battery management system for 18650 packs built around TI's bq76930 AFE-BMS \u2014 cell monitoring, protection, and passive balancing.",
+    "cover": "assets/img/projects/li-ion-bms.svg",
+    "tags": [
+      "Hardware",
+      "PCB Design",
+      "Firmware",
+      "Power"
+    ],
+    "year": "2024"
+  },
+  {
+    "slug": "secured-usbip",
+    "title": "Secured USB/IP",
+    "summary": "Adding a security layer to the Linux kernel's USB/IP stack, which passes USB devices over a network with no authentication or encryption of its own.",
+    "cover": "assets/img/projects/secured-usbip.svg",
+    "tags": [
+      "Linux Kernel",
+      "Security",
+      "C",
+      "Drivers"
+    ],
+    "year": "2023"
+  },
+  {
+    "slug": "dvs-inno-hub",
+    "title": "DVS INNO HUB",
+    "summary": "A self-hosted home lab \u2014 hardened OpenWrt router, NAS, and a Jetson Orin Nano doing AI inference at the edge.",
+    "cover": "assets/img/projects/dvs-inno-hub.svg",
+    "tags": [
+      "Networking",
+      "Self-Hosted",
+      "Edge AI",
+      "Linux"
+    ],
+    "year": "2025"
+  },
+  {
+    "slug": "linux-on-mobile",
+    "title": "Linux on Mobile",
+    "summary": "Replacing Android with a mainline-style Linux distribution on a Xiaomi handset \u2014 turning retired phone hardware into a capable embedded development target.",
+    "cover": "assets/img/projects/linux-on-mobile.svg",
+    "tags": [
+      "Linux",
+      "Kernel",
+      "Android",
+      "Halium"
+    ],
+    "year": "2025"
+  },
+  {
+    "slug": "bacnet-node",
+    "title": "BACnet Node \u2014 Building Automation PoC",
+    "summary": "A BACnet field device built on an open-source stack, with custom SMPS modules and I/O nodes for HVAC and environmental monitoring.",
+    "cover": "assets/img/projects/bacnet-node.svg",
+    "tags": [
+      "BACnet",
+      "Hardware",
+      "Firmware",
+      "HVAC"
+    ],
+    "year": "2023"
+  },
+  {
+    "slug": "home-automation",
+    "title": "Home Automation Node",
+    "summary": "A Wi-Fi connected controller speaking MQTT, with a local display and battery backup so it keeps working when the power does not.",
+    "cover": "assets/img/projects/home-automation.svg",
+    "tags": [
+      "IoT",
+      "MQTT",
+      "ESP32",
+      "Firmware"
+    ],
+    "year": "2023"
+  }
+]
