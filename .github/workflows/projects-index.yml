@@ -14,7 +14,7 @@ on:
     branches: [main]
     paths:
       - 'projects/**'
-      - 'content/profile.md'
+      - 'profile.md'
       - 'tools/**'
       - 'CNAME'
       - '.github/workflows/projects-index.yml'

@@ -3,7 +3,7 @@
 Static profile site at <https://profile.dvstronics.in>. No framework, no
 dependencies to install, nothing running on the server.
 
-Content is markdown. The home page renders `content/profile.md` in the browser.
+Content is markdown. The home page renders `profile.md` in the browser.
 Each project is a directory holding its source and its generated page:
 
 ```
@@ -116,7 +116,7 @@ Images cannot go inside a project write-up; inline images are not supported.
 
 ## Editing your profile
 
-`content/profile.md` — the front matter drives the hero, socials and contact
+`profile.md` — the front matter drives the hero, socials and contact
 heading; the `## About`, `## Skills`, `## Experience` and `## Contact` sections
 drive the rest. It renders live in the browser, so **no rebuild is needed** after
 editing it.
@@ -148,7 +148,7 @@ goes with it. Anything else you keep in that directory is left alone.
 
 ## What the build generates
 
-`tools/build.py` reads `CNAME`, `content/profile.md` and `projects/*/index.md`,
+`tools/build.py` reads `CNAME`, `profile.md` and `projects/*/index.md`,
 and writes three things. None are edited by hand:
 
 | Output | What it is |
@@ -176,9 +176,9 @@ fix that without a server.
 ## Files
 
 ```
-index.html                 Home page — renders content/profile.md in the browser
+index.html                 Home page — renders profile.md in the browser
 project.html               Redirect from the old ?p=<slug> URLs; noindex
-content/profile.md         Your profile — hero, about, skills, experience
+profile.md                 Your profile — hero, about, skills, experience
 projects/<slug>/index.md   One directory per project — the source of truth
 projects/<slug>/index.html GENERATED page; never edit
 projects/manifest.json     GENERATED card data; never edit

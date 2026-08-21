@@ -9,7 +9,7 @@ side. On a static host the directory path is also the public URL:
 
 Reads:
     CNAME                     the public origin
-    content/profile.md        author name, socials, contact heading
+    profile.md                author name, socials, contact heading
     projects/<slug>/index.md  one directory per project
 
 Writes:
@@ -44,7 +44,7 @@ import sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 SRC = ROOT / "projects"
-PROFILE = ROOT / "content" / "profile.md"
+PROFILE = ROOT / "profile.md"
 TEMPLATE = pathlib.Path(__file__).resolve().parent / "project-template.html"
 MANIFEST_OUT = SRC / "manifest.json"
 SITEMAP_OUT = ROOT / "sitemap.xml"
