@@ -1,8 +1,12 @@
 # dvstronics.in — web profile
 
-A static profile site. No framework, no build step, no dependencies to install.
-All content lives in markdown files under `content/`; the pages read them in the
-browser and render them.
+A static profile site. No framework, no dependencies to install, nothing running
+on the server. All content lives in markdown files under `content/`.
+
+The home page renders itself in the browser from `content/profile.md`. Project
+pages are **generated ahead of time** by `tools/build.py` into `p/<slug>/`, so
+each one serves its own title, description, canonical link and article text to a
+crawler or a reader with JavaScript switched off.
 
 ---
 
@@ -51,7 +55,8 @@ section on the site. Nothing else to change.
 
 ### Add a project
 
-One step: create `content/projects/my-project.md`, commit, push.
+Create `content/projects/my-project.md`, commit, push. The GitHub Action builds
+the page for it. To see it locally first, run `python3 tools/build.py`.
 
 ```markdown
 ---
@@ -68,16 +73,20 @@ Opening paragraph.
 
 ## A topic
 
-Body text, **bold**, `code`, [links](https://example.com), lists,
-tables, code blocks — standard markdown all works.
-
-![Caption for the photo](assets/img/projects/my-project-board.jpg)
+Body text, **bold**, *italic*, `code`, [links](https://example.com), and
+`-` bullet lists.
 ```
 
-There is no list to update. The site finds the file on its own — see
-[How projects are discovered](#how-projects-are-discovered) below if you want
-to know how. Every `##` heading in the body automatically becomes an entry in
-the "On this page" sidebar.
+There is no list to update — the build script finds the file on its own. Every
+`##` heading in the body becomes an entry in the "On this page" sidebar, with a
+numbered suffix if two headings share a name.
+
+**Supported markdown** is the subset above: `##`/`###` headings, paragraphs,
+`-` bullets, `**bold**`, `*italic*`, `` `code` `` and `[links](url)`. Ordered
+lists, tables, fenced code blocks, blockquotes, nested lists and inline images
+are **not** rendered. The build script reports the file and line and exits
+non-zero if it finds any, so unsupported syntax fails the build instead of
+shipping as wrong HTML — it never silently mangles your text.
 
 **Ordering** comes from the project files themselves:
 
@@ -90,24 +99,34 @@ positions. A new project with no `order:` sorts after them by year; give it an
 `order:` number to slot it in, or `order: 0` to put it first. Renumbering means
 editing the projects you want to move — nothing else.
 
-### How projects are discovered
+### What the build generates
 
-Two independent sources, merged, so either one alone is enough:
+`tools/build.py` reads `CNAME`, `content/profile.md` and `content/projects/*.md`
+and writes three things. None of them are edited by hand:
 
-- **`content/projects.json`** — a generated index. The GitHub Action in
-  `.github/workflows/projects-index.yml` reruns `tools/rebuild_index.py` on
-  every push that touches `content/projects/` and commits the result, so the
-  index in the repo is always current. You never edit this file by hand.
-- **A directory listing of `content/projects/`** — dev servers
-  (`python3 -m http.server`, `npx serve`) serve one, which is what lets local
-  preview pick up a new file instantly, before you have pushed anything.
-  GitHub Pages does not serve listings, so in production this request 404s and
-  contributes nothing. That 404 in devtools on the live site is expected.
+| Output | What it is |
+|---|---|
+| `content/projects.json` | The manifest the home page grid renders from — title, summary, cover, tags and year for each project, already in display order. One request, no sorting in the browser. |
+| `sitemap.xml` | One entry per project. Generated from the same list as everything else, so it cannot drift out of step. |
+| `p/<slug>/index.html` | A complete static page per project. |
 
-Between them: locally you see a new project the moment you save the file; in
-production you see it the moment the push lands. Delete the workflow and the
-site still works — you would just run `python3 tools/rebuild_index.py` yourself
-before pushing.
+The GitHub Action in `.github/workflows/projects-index.yml` runs the script on
+every push that touches `content/`, `tools/` or `CNAME`, and commits the result.
+So pushing a new `.md` file is enough. Running `python3 tools/build.py` yourself
+does exactly the same thing, and is what you want before a local preview.
+
+Delete a project's `.md` file and the next build deletes its page too.
+
+#### Why project pages are generated rather than rendered in the browser
+
+They used to live at `project.html?p=<slug>`. On a static host every one of
+those URLs returns the *same* file, so all six projects shared one title, one
+description and no canonical link — a crawler that does not run JavaScript saw
+six identical pages. Static pages at `p/<slug>/` are the only way to fix that
+without a server.
+
+`project.html` is still there as a redirect to the new URL, marked `noindex`,
+so old links and bookmarks keep working.
 
 ### Add images
 
@@ -145,11 +164,12 @@ The two Python references:
 | Command | What it is for | Do you run it? |
 |---|---|---|
 | `python3 -m http.server` | Previewing locally before you push | Only if you want a preview |
-| `tools/rebuild_index.py` | Regenerating the project index | No — a GitHub Action runs it |
+| `tools/build.py` | Generating the project pages, manifest and sitemap | Optional — a GitHub Action runs it on push |
 
-`rebuild_index.py` runs **on GitHub's servers** inside an Action, not on Pages.
-Delete `tools/` and `.github/` and the site still works; you would just
-regenerate `content/projects.json` yourself before pushing.
+`build.py` runs **on GitHub's servers** inside an Action, not on Pages. Its
+output — `p/`, `content/projects.json`, `sitemap.xml` — is committed to the
+repo as ordinary static files, which is all Pages ever serves. It uses only the
+Python standard library; there is nothing to `pip install`.
 
 ## Previewing locally
 
@@ -161,8 +181,9 @@ cd path/to/this/folder
 python3 -m http.server 8000
 ```
 
-Then visit <http://localhost:8000>. Any Python 3 install has this built in — no
-packages to install. If you would rather not use Python, `npx serve` or the VS
+Then visit <http://localhost:8000>. If you have added or edited a project, run
+`python3 tools/build.py` first so its page exists. Any Python 3 install has both
+built in — no packages to install. If you would rather not use Python, `npx serve` or the VS
 Code "Live Server" extension do the same job. This step is purely a convenience;
 skipping it and pushing straight to GitHub works fine.
 
@@ -331,21 +352,24 @@ Plus, optionally, AAAA records for IPv6:
 ## Files
 
 ```
-index.html                 Home page
-project.html               Project detail page (reads ?p=<slug>)
+index.html                 Home page — renders content/profile.md in the browser
+project.html               Redirect from the old ?p=<slug> URLs; noindex
 content/
   profile.md               Your profile — hero, about, skills, experience
-  projects/*.md            One file per project — this is the source of truth
-  projects.json            Generated index of the above; never edit by hand
-.github/workflows/         Action that keeps projects.json current on push
+  projects/*.md            One file per project — the source of truth
+  projects.json            GENERATED manifest for the home grid; never edit
+p/<slug>/index.html        GENERATED static page per project; never edit
+sitemap.xml                GENERATED from the project list; never edit
+.github/workflows/         Action that runs tools/build.py on push
 assets/
   css/style.css            All styling. Colours are the variables at the top.
-  js/app.js                Loads and renders the markdown
+  js/app.js                Renders the home page; hydrates the project footer
   js/marked.min.js         Markdown parser (vendored, MIT — no CDN, no npm)
   img/                     Images, including generated project covers
-tools/rebuild_index.py     Regenerates content/projects.json (the Action runs it)
-CNAME                      The custom domain: profile.dvstronics.in
-robots.txt, sitemap.xml    Search engine hints
+tools/build.py             Generates the three files marked GENERATED above
+tools/project-template.html  The shell those project pages are stamped into
+CNAME                      The custom domain, and the origin for canonical URLs
+robots.txt                 Search engine hints
 .nojekyll                  Tells GitHub Pages to serve files as-is
 ```
 
@@ -377,10 +401,17 @@ and a slight mismatch reads as intentional more often than not.
 
 ## A note on search engines
 
-Because content is fetched and rendered in the browser, the raw HTML source
-does not contain your project text. Google renders JavaScript and will index it,
-but some crawlers and link-preview bots will not. The `<title>`, description,
-and Open Graph tags in `index.html` are static, so link previews still work.
+Project pages are generated, so the raw HTML at `p/<slug>/` already contains the
+full article, a unique `<title>`, a unique description, and a canonical link.
+Crawlers and link-preview bots that do not run JavaScript see the real page.
 
-If that ever matters more than the zero-build simplicity, the fix is a small
-pre-render step in a GitHub Action — worth doing then, not now.
+The home page is still rendered in the browser from `content/profile.md`, so its
+About and Skills text is not in the raw HTML. Its `<title>`, description and
+Open Graph tags are static, so link previews and the search result snippet are
+correct, and Google renders JavaScript for the rest. That trade is deliberate:
+the home page is one URL, and keeping it live-rendered is what lets you edit
+`profile.md` without regenerating anything.
+
+Open Graph images are `assets/img/avatar.jpg` — a raster file, because X and
+several other scrapers ignore SVG, and declared as a `summary` card because it
+is square. `summary_large_image` expects roughly 1.91:1 and would crop it.
