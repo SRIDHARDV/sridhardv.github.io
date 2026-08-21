@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" width="800" height="800" role="img" aria-label="Illustration of an engineer at a workbench, soldering a circuit board beside an open laptop">
+<defs>
+  <linearGradient id="bgg" x1="0" y1="0" x2="0.6" y2="1">
+    <stop offset="0%"  stop-color="#101c2e"/>
+    <stop offset="60%" stop-color="#0a1018"/>
+    <stop offset="100%" stop-color="#080b12"/>
+  </linearGradient>
+  <radialGradient id="lamp" cx="18%" cy="12%" r="62%">
+    <stop offset="0%"  stop-color="#ffca7a" stop-opacity=".38"/>
+    <stop offset="45%" stop-color="#ffb35c" stop-opacity=".12"/>
+    <stop offset="100%" stop-color="#ffb35c" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="tipglow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#ff7a70" stop-opacity=".85"/>
+    <stop offset="55%" stop-color="#ff7a70" stop-opacity=".22"/>
+    <stop offset="100%" stop-color="#ff7a70" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="screenglow" cx="50%" cy="50%" r="50%">
+    <stop offset="0%"  stop-color="#5b9dff" stop-opacity=".45"/>
+    <stop offset="100%" stop-color="#5b9dff" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="screen" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#2b6bd4"/><stop offset="100%" stop-color="#12325e"/>
+  </linearGradient>
+  <linearGradient id="desk" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#4a3a28"/><stop offset="100%" stop-color="#2a2118"/>
+  </linearGradient>
+  <linearGradient id="deskTop" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#5b4530"/><stop offset="100%" stop-color="#3b2c1e"/>
+  </linearGradient>
+  <linearGradient id="skin" x1="0" y1="0" x2="1" y2="0.6">
+    <stop offset="0%" stop-color="#c08558"/><stop offset="100%" stop-color="#a06c44"/>
+  </linearGradient>
+  <linearGradient id="shirt" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#3d5f8c"/><stop offset="100%" stop-color="#27405f"/>
+  </linearGradient>
+  <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+    <path d="M44 0H0v44" fill="none" stroke="#5b9dff" stroke-opacity=".05" stroke-width="1"/>
+  </pattern>
+</defs>
+
+<!-- ── Backdrop ─────────────────────────────────────────── -->
+<rect width="800" height="800" fill="url(#bgg)"/>
+<rect width="800" height="560" fill="url(#grid)"/>
+<rect width="800" height="800" fill="url(#lamp)"/>
+
+<!-- Desk lamp, upper left -->
+<g stroke="#161d29" stroke-width="13" stroke-linecap="round" fill="none">
+  <path d="M52 300 V150"/>
+  <path d="M52 150 L128 96"/>
+</g>
+<path d="M96 60 L214 128 L150 172 Z" fill="#1b2434"/>
+<path d="M104 74 L200 130 L152 162 Z" fill="#ffd79a" opacity=".55"/>
+<path d="M108 132 L268 250 L60 250 Z" fill="#ffca7a" opacity=".07"/>
+
+<!-- ── Desk ─────────────────────────────────────────────── -->
+<rect x="0" y="556" width="800" height="20" fill="url(#deskTop)"/>
+<rect x="0" y="576" width="800" height="224" fill="#241c14"/>
+<rect x="0" y="576" width="800" height="5" fill="#000" opacity=".35"/>
+
+<!-- ── Seated figure, right side ────────────────────────── -->
+<!-- Torso -->
+<path d="M486 566 C486 452 540 396 612 392 C700 388 762 440 772 528 L784 566 Z"
+      fill="url(#shirt)"/>
+<!-- Far arm reaching to the board -->
+<path d="M556 452 C500 470 452 520 430 566 L512 566 C534 520 566 486 596 470 Z"
+      fill="#33527a"/>
+<!-- Neck -->
+<path d="M582 330 h74 v70 c-40 14 -66 6 -74 -6 Z" fill="#8e5f3c"/>
+<!-- Collar -->
+<path d="M566 386 C592 414 656 416 684 388 L700 404 C664 442 590 442 552 404 Z" fill="#4a6f9e"/>
+
+<!-- Head, profile facing left -->
+<path d="M545 186
+         C596 156 676 168 700 224
+         C722 276 714 322 696 348
+         C678 374 640 386 606 376
+         C578 368 562 350 556 330
+         L540 322 C528 316 528 302 540 296
+         L548 292 C540 268 536 240 545 214 Z"
+      fill="url(#skin)"/>
+<!-- Ear -->
+<path d="M652 292 c16 -8 28 4 24 20 c-4 14 -18 20 -28 12 Z" fill="#9c6841"/>
+<!-- Beard -->
+<path d="M556 300 C560 344 586 372 622 378 C660 384 688 366 698 342
+         C688 366 660 372 630 366 C600 360 578 340 570 306 Z" fill="#1b1512" opacity=".92"/>
+<path d="M562 318 C572 350 594 368 622 372 C650 376 674 364 686 346
+         C672 380 626 392 594 376 C572 364 560 342 556 320 Z" fill="#241b16"/>
+<!-- Hair -->
+<path d="M539 214 C540 168 596 144 650 152 C702 160 726 200 722 246
+         C720 268 712 284 704 292 C706 252 692 222 664 208
+         C632 192 578 194 550 224 Z" fill="#17120f"/>
+<!-- Eyes, looking down at the joint -->
+<g fill="#1b1512">
+  <ellipse cx="561" cy="276" rx="9" ry="7"/>
+  <ellipse cx="639" cy="276" rx="9" ry="7"/>
+</g>
+<g stroke="#17120f" stroke-width="7" stroke-linecap="round" fill="none">
+  <path d="M546 250 c12 -7 26 -7 34 -2"/>
+  <path d="M624 248 c12 -7 26 -6 34 0"/>
+</g>
+<!-- Glasses -->
+<g fill="none" stroke="#0d1016" stroke-width="7">
+  <rect x="534" y="248" width="66" height="46" rx="14"/>
+  <rect x="612" y="248" width="66" height="46" rx="14"/>
+  <path d="M600 266 h12"/>
+  <path d="M678 262 c18 2 26 10 28 22"/>
+</g>
+<rect x="540" y="254" width="54" height="34" rx="10" fill="#5b9dff" opacity=".22"/>
+<rect x="618" y="254" width="54" height="34" rx="10" fill="#5b9dff" opacity=".16"/>
+
+<!-- ── PCB on the desk ──────────────────────────────────── -->
+<g>
+  <path d="M330 556 L618 556 L648 618 L300 618 Z" fill="#15503c"/>
+  <path d="M330 556 L618 556 L622 564 L328 564 Z" fill="#1d6b4f"/>
+  <g stroke="#c98a3f" stroke-width="3" fill="none" opacity=".85">
+    <path d="M352 578 h120 v18 h96"/>
+    <path d="M372 600 h60 v-12 h140"/>
+    <path d="M560 574 h60"/>
+  </g>
+  <g fill="#d8dee6">
+    <circle cx="352" cy="578" r="5"/><circle cx="472" cy="596" r="5"/>
+    <circle cx="568" cy="596" r="5"/><circle cx="372" cy="600" r="5"/>
+    <circle cx="620" cy="574" r="5"/>
+  </g>
+  <rect x="404" y="566" width="86" height="34" rx="4" fill="#10161d"/>
+  <g fill="#8e9aa8">
+    <rect x="404" y="572" width="86" height="3"/><rect x="404" y="580" width="86" height="3"/>
+    <rect x="404" y="588" width="86" height="3"/>
+  </g>
+  <rect x="516" y="580" width="40" height="24" rx="3" fill="#10161d"/>
+  <!-- hot joint under the iron -->
+  <circle cx="470" cy="588" r="9" fill="#ffd0a0"/>
+  <circle cx="470" cy="588" r="5" fill="#fff3e2"/>
+</g>
+
+<!-- ── Laptop, left ─────────────────────────────────────── -->
+<g>
+  <ellipse cx="252" cy="440" rx="150" ry="110" fill="url(#screenglow)"/>
+  <!-- lid -->
+  <path d="M126 552 L150 322 L352 322 L360 552 Z" fill="#7f8b9b"/>
+  <path d="M140 542 L162 336 L342 336 L350 542 Z" fill="url(#screen)"/>
+  <g stroke="#9fc6ff" stroke-width="5" stroke-linecap="round" opacity=".75">
+    <path d="M178 372 h64"/><path d="M178 396 h108"/>
+    <path d="M196 420 h96"/><path d="M196 444 h58"/>
+    <path d="M178 468 h122"/><path d="M178 492 h40"/>
+  </g>
+  <path d="M178 516 h26" stroke="#ff7a70" stroke-width="5" stroke-linecap="round"/>
+  <!-- base -->
+  <path d="M96 552 L392 552 L410 590 L74 590 Z" fill="#98a4b3"/>
+  <path d="M120 558 L372 558 L384 578 L106 578 Z" fill="#6f7c8c"/>
+  <rect x="196" y="582" width="96" height="5" rx="2" fill="#7d8899"/>
+</g>
+
+<!-- Near arm, reaching down-left to the board -->
+<path d="M754 452 C744 508 700 546 640 560 L612 528 C662 508 692 478 700 436 Z"
+      fill="#4a6f9e"/>
+<path d="M700 436 C712 466 704 500 684 524" fill="none" stroke="#3d5f8c" stroke-width="5" opacity=".5"/>
+
+<!-- ── Soldering iron ─────────────────────────────────────
+     Drawn tip-at-origin pointing left, then placed so the tip
+     lands exactly on the hot joint at (470, 588). -->
+<g transform="translate(470 588) rotate(-27.2)">
+  <!-- handle -->
+  <rect x="96" y="-19" width="140" height="38" rx="18" fill="#1e2734"/>
+  <rect x="104" y="-13" width="86" height="26" rx="13" fill="#2c3849"/>
+  <g fill="#151c26">
+    <rect x="116" y="-17" width="7" height="34" rx="3"/>
+    <rect x="136" y="-17" width="7" height="34" rx="3"/>
+    <rect x="156" y="-17" width="7" height="34" rx="3"/>
+  </g>
+  <rect x="228" y="-11" width="26" height="22" rx="8" fill="#151c26"/>
+  <!-- ferrule + tip -->
+  <rect x="52" y="-11" width="48" height="22" rx="10" fill="#9aa6b5"/>
+  <path d="M52 -9 L14 -3 L14 3 L52 9 Z" fill="#c6ccd6"/>
+  <path d="M14 -3 L0 0 L14 3 Z" fill="#ff7a70"/>
+  <!-- fingers wrapped round the grip -->
+  <g fill="url(#skin)">
+    <rect x="104" y="-26" width="26" height="30" rx="13"/>
+    <rect x="130" y="-28" width="26" height="32" rx="13"/>
+    <rect x="156" y="-26" width="26" height="30" rx="13"/>
+  </g>
+  <path d="M100 4 c-10 8 -8 24 6 30 c16 8 42 6 60 -4 l4 -28 Z" fill="url(#skin)"/>
+</g>
+<circle cx="470" cy="588" r="70" fill="url(#tipglow)"/>
+
+<!-- Solder smoke -->
+<g stroke="#ffffff" stroke-opacity=".16" stroke-width="6" stroke-linecap="round" fill="none">
+  <path d="M470 566 C458 534 486 520 474 490 C464 464 486 452 480 430"/>
+  <path d="M498 560 C492 540 510 530 504 512" stroke-opacity=".09"/>
+</g>
+
+<!-- ── Bench clutter ────────────────────────────────────── -->
+<g fill="#586474">
+  <rect x="676" y="596" width="96" height="12" rx="6" transform="rotate(-8 676 596)"/>
+  <circle cx="700" cy="586" r="7"/>
+</g>
+<g fill="#c98a3f" opacity=".8">
+  <circle cx="86" cy="606" r="7"/><circle cx="112" cy="600" r="5"/><circle cx="64" cy="596" r="5"/>
+</g>
+
+<!-- Vignette -->
+<rect width="800" height="800" fill="none"/>
+<path d="M0 0 h800 v800 h-800 Z" fill="url(#vig)"/>
+<radialGradient id="vig" cx="50%" cy="45%" r="72%">
+  <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+  <stop offset="100%" stop-color="#000" stop-opacity=".42"/>
+</radialGradient>
+</svg>
